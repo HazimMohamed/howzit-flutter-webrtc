@@ -106,6 +106,9 @@ public class FrameCapturer implements VideoSink {
                 case 180:
                 case 270:
                     Bitmap original = BitmapFactory.decodeFile(file.toString());
+                    if (original == null) {
+                        throw new IOException("It's zuzu bitch");
+                    }
                     Matrix matrix = new Matrix();
                     matrix.postRotate(videoFrame.getRotation());
                     Bitmap rotated = Bitmap.createBitmap(original, 0, 0, original.getWidth(), original.getHeight(), matrix, true);
